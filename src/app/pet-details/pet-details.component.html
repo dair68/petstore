@@ -1,0 +1,16 @@
+<div>
+    <div class="card mx-auto mt-2" *ngIf="pet">
+        <h5 class="card-header card-title text-light">
+            {{pet.name}}
+        </h5>
+        <img class="pet-image" src={{pet.image}} />
+        <div class="card-body pt-1">
+            <p>Species: {{pet.species}} Sex: {{pet.sex}}</p>
+            <p>{{pet.details}}</p>
+            <p>Status: {{pet.in_stock ? "In stock" : "Sold!"}}</p>
+            <!-- <button type="button" class="btn btn-primary" *ngIf="pet.in_stock" (click)="sellPet()">Sell</button> -->
+            <!-- <button type="button" class="btn btn-dark" (click)="deletePet(pet.id)">Remove Pet Data</button> -->
+            <button class="btn btn-secondary" (click)="back()">Back</button>
+        </div>
+    </div>
+</div>

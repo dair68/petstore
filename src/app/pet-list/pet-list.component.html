@@ -1,0 +1,21 @@
+<div>
+    <table class="table table-bordered table-hover table-light w-75 mx-auto">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Species</th>
+                <th>In Stock</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr *ngFor="let pet of pets" (click)="onSelect(pet)" [class.selected]="pet === selectedPet"
+                routerLink="/details/{{pet.id}}">
+                <td>{{pet.id}}</td>
+                <td>{{pet.name}}</td>
+                <td>{{pet.species}}</td>
+                <td>{{pet.in_stock}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

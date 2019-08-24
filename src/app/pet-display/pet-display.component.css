@@ -1,0 +1,18 @@
+img {
+    width: auto;
+    height: 165px;
+    max-height: 165px;
+    object-fit: cover;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+
+img:hover {
+    top: -20px;
+}
+
+.pet-container {
+    display: flex;
+    flex-wrap: wrap;
+}

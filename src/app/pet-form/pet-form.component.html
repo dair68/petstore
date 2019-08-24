@@ -1,0 +1,18 @@
+<h2>Add Pet</h2>
+
+<form #petForm="ngForm" (ngSubmit)="onSubmit()">
+    Name:<br>
+    <input type="text" name="petname" [(ngModel)]="model.name" required><br>
+    Species:<br>
+    <input type="text" name="species" [(ngModel)]="model.species" required><br>
+    Sex: <br>
+    <select name="sex" [(ngModel)]="model.sex" required>
+        <option value="male">male</option>
+        <option value="female">female</option>
+    </select> <br>
+    Details: <br>
+    <textarea name="details" rows="3" cols="50" [(ngModel)]="model.details"></textarea><br>
+    Image: <br>
+    <input type="text" name="image" [(ngModel)]="model.image"><br>
+    <button class="btn btn-dark" type="submit" [disabled]="!petForm.form.valid">Submit</button>
+</form>
