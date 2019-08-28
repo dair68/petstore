@@ -6,6 +6,7 @@ export class Pet {
         public sex: string,
         public details: string,
         public in_stock: boolean,
-        public image: string
+        public image: string,
+        public price: number
     ) {}
 }

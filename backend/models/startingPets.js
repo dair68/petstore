@@ -1,8 +1,5 @@
-import {Pet} from './pet';
-
-export const pets: Pet[] = [
+module.exports = [
     {
-        id: 1,
         name: "Drew",
         species: "dog",
         sex: "male",
@@ -12,7 +9,6 @@ export const pets: Pet[] = [
         price: 100
     },
     {
-        id: 2,
         name: "Mercy",
         species: "pony",
         sex: "female",
@@ -22,7 +18,6 @@ export const pets: Pet[] = [
         price: 2000
     },
     {
-        id: 3,
         name: "Jill",
         species: "hedgehog",
         sex: "female",
@@ -32,7 +27,6 @@ export const pets: Pet[] = [
         price: 70
     },
     {
-        id: 4,
         name: "Klein",
         species: "bunny",
         sex: "male",
@@ -42,7 +36,6 @@ export const pets: Pet[] = [
         price: 60
     },
     {
-        id: 5,
         name: "Mary",
         species: "hamster",
         sex: "female",

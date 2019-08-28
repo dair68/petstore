@@ -9,7 +9,7 @@ import {PetService} from "../pet.service";
 })
 export class PetFormComponent implements OnInit {
 
-  model = new Pet(0, "", "", "", "", false, "");
+  model = new Pet(0, "", "", "", "", false, "", 0);
 
   submitted = false;
 
@@ -21,7 +21,7 @@ export class PetFormComponent implements OnInit {
       this.model.id = prevId + 1;
       this.model.in_stock = true;
       this.petService.addPet(this.model);
-      this.model = new Pet(0, "", "", "", "", false, "");
+      this.model = new Pet(0, "", "", "", "", false, "", 0);
     });
   }
 
