@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var configure = require('./configure');
+const mongoose = require('mongoose');
+const configure = require('./configure');
 
 const Schema = mongoose.Schema;
 
@@ -31,7 +31,7 @@ Pet.methods.sell = function() {
     this.in_stock = false;
 }
 
-var petModel = mongoose.model('Pet', Pet);
+const petModel = mongoose.model('Pet', Pet);
 
 //configures initial documents
 //configure.initializeCollection(petModel);

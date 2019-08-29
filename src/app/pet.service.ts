@@ -1,32 +1,32 @@
 import { Injectable } from '@angular/core';
-import { pets } from "./sample_pets";
 import { Pet } from "./pet"
 
 import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class PetService {
-  getPets(): Observable<Pet[]> {
-    console.log("obtained pets");
-    return of(pets);
+  getPets(numPets=0): Observable<Pet[]> {
+    return this.http.get<Pet[]>(this.petsUrl + '/pets/' + numPets);
   }
 
   getPet(id): Observable<Pet> {
-    console.log("obtained pet " + id);
-    return of(pets.find(pet => pet.id == id));
+    return this.http.get<Pet>(this.petsUrl + '/pet-details/' + id);
   }
 
   addPet(pet): void {
-    pets.push(pet);
+    this.http.post(this.petsUrl, {pet: pet});
   }
 
-  removePet(id): void {
-    let petIndex = pets.findIndex(pet => pet.id == id);
-    pets.splice(petIndex, 1);
-  }
+  // removePet(id): void {
+  //   let petIndex = pets.findIndex(pet => pet.id == id);
+  //   pets.splice(petIndex, 1);
+  // }
 
-  constructor() { }
+  private petsUrl = '/api';  // URL to web api
+
+  constructor(private http: HttpClient) { }
 }

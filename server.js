@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-var mongoose = require('mongoose');
-var mongoURL = 'mongodb://localhost:27017/petstore';
+const mongoose = require('mongoose');
+const mongoURL = 'mongodb://localhost:27017/petstore';
 
-var router = require('./backend/routes');
-var bodyParser = require('body-parser');
+const router = require('./backend/routes');
+const bodyParser = require('body-parser');
 
 //connecting to database
 mongoose.connect(mongoURL, { useNewUrlParser: true }, err => console.log(err.message));
@@ -18,6 +18,12 @@ mongoose.connection.on('error', err => console.log(err.message));
 app.use(router);
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 //connecting app to server
 app.listen(port, () => console.log(`app listening on port ${port}`));

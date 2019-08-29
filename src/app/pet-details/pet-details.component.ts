@@ -17,17 +17,13 @@ export class PetDetailsComponent implements OnInit {
 
   getPet(): void {
     //+ operate turns string into number
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     this.petService.getPet(id)
     .subscribe(pet => this.pet = pet);
   }
 
   sellPet() {
     this.pet.in_stock = false;
-  }
-
-  deletePet(id) {
-    this.petService.removePet(id);
   }
   
   back(): void {

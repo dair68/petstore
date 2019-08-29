@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PetService} from "../pet.service";
+import { PetService } from "../pet.service";
 import { Pet } from '../pet';
 
 @Component({
@@ -8,28 +8,12 @@ import { Pet } from '../pet';
   styleUrls: ['./pet-list.component.css']
 })
 export class PetListComponent implements OnInit {
-
+  
   pets: Pet[];
-  selectedPet: Pet;
-  submittedPet: Pet;
 
   getPets(): void {
     this.petService.getPets()
-    .subscribe(pets => this.pets = pets);
-  }
-
-  onSelect(pet) {
-    if(pet === this.selectedPet) {
-      this.selectedPet = null;
-    }
-    else {
-      this.selectedPet = pet;
-    }
-    
-  }
-
-  onSubmit() {
-    console.log("submitted pet!");
+      .subscribe(pets => this.pets = pets);
   }
 
   constructor(private petService: PetService) { }
@@ -37,6 +21,5 @@ export class PetListComponent implements OnInit {
   ngOnInit() {
     this.getPets();
   }
-
 }
 

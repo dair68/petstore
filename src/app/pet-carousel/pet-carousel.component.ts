@@ -11,11 +11,8 @@ export class PetCarouselComponent implements OnInit {
   displayedPets: Pet[]
 
   displayPets(numPets): void {
-    this.petService.getPets()
-    .subscribe(pets => {
-      this.displayedPets = pets.slice(0,numPets);
-      console.log(this.displayedPets);
-    });
+    this.petService.getPets(numPets)
+    .subscribe(pets => this.displayedPets = pets);
   }
 
   constructor(private petService: PetService) { }
@@ -23,5 +20,4 @@ export class PetCarouselComponent implements OnInit {
   ngOnInit() {
     this.displayPets(5);
   }
-
 }

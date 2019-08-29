@@ -1,7 +1,7 @@
-var startingPets = require('./startingPets');
+const startingPets = require('./startingPets');
 
 //initializes starting documents in collection
-initializeCollection = function(model) {
+const initializeCollection = function(model) {
     model.deleteMany({}, function(err) {
         if(err) {
             console.log(err);

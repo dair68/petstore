@@ -2,7 +2,7 @@
     <h1 class="ml-5">The Pets!</h1>
     <div class="pet-container">
         <div *ngFor="let pet of pets">
-            <a routerLink="/details/{{pet.id}}">
+            <a routerLink="/details/{{pet._id}}">
                 <img src={{pet.image}} alt={{pet.species}}>
             </a>
         </div>
