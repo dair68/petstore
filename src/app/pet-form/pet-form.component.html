@@ -1,0 +1,65 @@
+<div>
+    <div class="container" [hidden]="submitted">
+        <form #petForm="ngForm" (ngSubmit)="onSubmit()" class="bg-light p-3 pet-form mx-auto">
+            <fieldset>
+                <legend>Enter pet info to add it to the shop!</legend>
+                <div class="form-group">
+                    <label for="nameInput">Name</label>
+                    <input type="text" class="form-control" id="nameInput" placeholder="Enter pet name"
+                        [(ngModel)]="model.name" name="name" #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                        Name is required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="speciesInput">Species</label>
+                    <input type="text" class="form-control" id="speciesInput" placeholder="Species"
+                        [(ngModel)]="model.species" name="species" #species="ngModel" required>
+                    <div [hidden]="species.valid || species.pristine" class="alert alert-danger">
+                        Species is required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sexInput">Sex</label>
+                    <select class="custom-select" id="sexInput" [(ngModel)]="model.sex" name="sex" #sex="ngModel"
+                        required>
+                        <option selected disabled>Choose...</option>
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priceInput">Price</label>
+                    <input type="number" class="form-control" id="priceInput" placeholder="Price"
+                        [(ngModel)]="model.price" name="price">
+                </div>
+                <div class="form-group">
+                    <label for="imageInput">Image</label>
+                    <input type="url" class="form-control" id="imageInput" placeholder="Image URL"
+                        [(ngModel)]="model.image" name="image">
+                </div>
+                <div class="form-group">
+                    <label for="descriptionInput">Description</label>
+                    <textarea class="form-control" id="descriptionInput" placeholder="Description here" rows="3"
+                        [(ngModel)]="model.description" name="description"></textarea>
+                </div>
+                <p></p>
+                <button type="submit" class="btn btn-primary" [disabled]="!petForm.form.valid">Submit</button>
+                <small id="formHelpBlock" class="form-text text-muted" [hidden]="petForm.form.valid">
+                    Fill in all the required fields to enable submission
+                </small>
+            </fieldset>
+        </form>
+    </div>
+    <div class="container success-container alert alert-success mt-3" [hidden]="!submitted">
+        <h4 class="alert-heading">Success!</h4>
+        <h5>You submitted the following</h5>
+        <p class="mb-0">Name: {{model.name}}</p>
+        <p class="mb-0">Species: {{model.species}}</p>
+        <p class="mb-0">Sex: {{model.sex}}</p>
+        <p class="mb-0">Price: {{model.price}}</p>
+        <p class="mb-0">Image: {{model.image}}</p>
+        <p class="mb-0">Description: {{model.description}}</p>
+        <button class="btn btn-dark">Edit</button>
+    </div>
+</div>

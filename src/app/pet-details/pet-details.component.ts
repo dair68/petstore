@@ -16,7 +16,6 @@ export class PetDetailsComponent implements OnInit {
   @Input() pet: Pet;
 
   getPet(): void {
-    //+ operate turns string into number
     const id = this.route.snapshot.paramMap.get('id');
     this.petService.getPet(id)
     .subscribe(pet => this.pet = pet);
