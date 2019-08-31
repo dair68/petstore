@@ -37,10 +37,25 @@ router.get('/api/pets/images/:num', function (req, res) {
 
 //obtains single pet from database
 router.get('/api/pet/:id', function (req, res) {
+    const id = req.params.id;
+
     //querying for pet by id
-    Pet.findById(req.params.id, function (err, pet) {
+    Pet.findById(id, function (err, pet) {
         if (err) {
             handleError(res, err.message, 'could not find pet-details');
+        }
+        res.send(pet);
+    });
+});
+
+//updates pet to not in stock
+router.put('/api/pet/sell/:id', function(req, res) {
+    const id = req.params.id;
+
+    //querying for pet by id
+    Pet.findByIdAndUpdate(id, {in_stock: false}, {new: true}, function(err, pet) {
+        if(err) {
+            handleError(res, err.message, 'could not sell pet');
         }
         res.send(pet);
     });

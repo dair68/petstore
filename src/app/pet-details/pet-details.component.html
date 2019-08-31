@@ -1,15 +1,22 @@
 <div>
-    <div class="card mx-auto mt-2" *ngIf="pet">
+    <div class="card mx-auto mt-2" *ngIf="pet" [hidden]="petPurchased">
         <h5 class="card-header card-title text-light">
             {{pet.name}}
         </h5>
-        <img class="pet-image" src={{pet.image}} alt={{pet.species}}/>
+        <img class="pet-image" src={{pet.image}} alt={{pet.species}} />
         <div class="card-body pt-1">
             <p>Species: {{pet.species}} Sex: {{pet.sex}}</p>
             <p>{{pet.details}}</p>
             <p>Price: ${{pet.price}}</p>
             <p>Status: {{pet.in_stock ? "In stock" : "Sold!"}}</p>
+            <button class="btn btn-primary" (click)="buyPet()" *ngIf="pet.in_stock">Buy</button>
             <button class="btn btn-secondary" (click)="back()">Back</button>
         </div>
+    </div>
+    <div class="container success-container alert alert-success mt-3" [hidden]="!petPurchased">
+        <h4 class="alert-heading">Success!</h4>
+        <h5>You purchased the following: </h5>
+        <p>{{pet.name}} the {{pet.species}}</p>
+        <button class="btn btn-secondary" (click)="back()">Back</button>
     </div>
 </div>

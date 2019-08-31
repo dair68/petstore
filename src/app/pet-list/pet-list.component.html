@@ -4,7 +4,7 @@
             <tr>
                 <th>Name</th>
                 <th>Species</th>
-                <!-- <th>Sex</th> -->
+                <th>Sex</th>
                 <th>In Stock</th>
                 <!-- <th>id</th> -->
             </tr>
@@ -13,7 +13,7 @@
             <tr *ngFor="let pet of pets" routerLink="/pet/{{pet._id}}">
                 <td>{{pet.name}}</td>
                 <td>{{pet.species}}</td>
-                <!-- <td>{{pet.sex}}</td> -->
+                <td>{{pet.sex}}</td>
                 <td>{{pet.in_stock}}</td>
                 <!-- <td>{{pet._id}}</td> -->
             </tr>

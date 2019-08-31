@@ -14,6 +14,7 @@ import { PetService } from 'src/app/pet.service';
 export class PetDetailsComponent implements OnInit {
 
   @Input() pet: Pet;
+  petPurchased = false;
 
   //obtains details for a certain pet based on id in url
   getPet(): void {
@@ -22,8 +23,12 @@ export class PetDetailsComponent implements OnInit {
     .subscribe(pet => this.pet = pet);
   }
 
-  sellPet() {
-    this.pet.in_stock = false;
+  buyPet() {
+    this.petService.purchasePet(this.pet)
+    .subscribe(pet => {
+      this.pet = pet;
+      this.petPurchased = true;
+    });
   }
   
   //returns user to previously visited page

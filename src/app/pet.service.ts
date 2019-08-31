@@ -37,6 +37,15 @@ export class PetService {
       );
   }
 
+  //purchases pet from pet API
+  purchasePet(pet: Pet): Observable<Pet> {
+    return this.http.put<Pet>(this.petsUrl + '/pet/sell/' + pet._id, pet, this.httpOptions).
+    pipe(
+      tap(_ => console.log('purchased pet ' + pet._id)),
+      catchError(this.handleError<Pet>('purchasePet'))
+    )
+  }
+
   //petInfo array contains all pet parameters except id
   addPet(pet: Pet): Observable<Pet> {
     return this.http.post<Pet>(this.petsUrl + '/pet', pet, this.httpOptions)
