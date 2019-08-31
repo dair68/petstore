@@ -19,6 +19,15 @@ export class PetService {
       );
   }
 
+  //requests pet images from pet API
+  getImages(num=0): Observable<[]> {
+    return this.http.get<[]>(this.petsUrl + '/pets/images/' + num).
+    pipe(
+      tap(_ => console.log('fetched images')),
+      catchError(this.handleError<[]>('getImages', []))
+    );
+  }
+
   //requests single pet from pet API using pet id
   getPet(id: string): Observable<Pet> {
     return this.http.get<Pet>(this.petsUrl + '/pet/' + id).

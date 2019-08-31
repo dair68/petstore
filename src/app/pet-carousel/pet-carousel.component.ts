@@ -9,12 +9,12 @@ import { PetService } from '../pet.service';
 })
 export class PetCarouselComponent implements OnInit {
   
-  displayedPets: Pet[]
+  petImages: [];
 
   //obtains 5 pets from server and displays them in carousel
   displayPets(): void {
-    this.petService.getPets()
-    .subscribe(pets => this.displayedPets = pets.slice(0, 5));
+    this.petService.getImages(5)
+    .subscribe(images => this.petImages = images);
   }
 
   constructor(private petService: PetService) { }

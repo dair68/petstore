@@ -1,7 +1,7 @@
 <div class="bg-light container pb-2">
     <h1 class="ml-5">The Pets!</h1>
     <div class="pet-container">
-        <div *ngFor="let pet of pets">
+        <div *ngFor="let pet of displayPets">
             <div *ngIf="pet.image">
                 <a routerLink="/pet/{{pet._id}}">
                     <img src={{pet.image}} alt={{pet.species}}>

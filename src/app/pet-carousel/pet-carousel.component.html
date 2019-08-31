@@ -4,8 +4,8 @@
             [class.active]="i === 0"></li>
     </ol>
     <div class="carousel-inner">
-        <div class="carousel-item" *ngFor="let pet of displayedPets; index as i" [class.active]="i === 0">
-            <img class="d-block slide-image" src="{{pet.image}}" alt="{{pet.species}}">
+        <div class="carousel-item" *ngFor="let image of petImages; index as i" [class.active]="i === 0">
+            <img class="d-block slide-image" src="{{image.image}}" alt="{{image.species}}">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

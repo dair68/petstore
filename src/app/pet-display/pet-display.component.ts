@@ -9,12 +9,12 @@ import { Pet } from '../pet';
 })
 export class PetDisplayComponent implements OnInit {
 
-  pets: Pet[]
+  displayPets: [];
 
   //obtaining pet array from server
   getPets(): void {
-    this.petService.getPets()
-    .subscribe(pets => this.pets = pets);
+    this.petService.getImages()
+    .subscribe(images => this.displayPets = images);
   }
 
   constructor(private petService: PetService) { }

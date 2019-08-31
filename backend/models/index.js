@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const configure = require('./configure');
+const conf = require('./configure');
 
 const Schema = mongoose.Schema;
 
-const Pet = new Schema({
+const petSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -27,13 +27,14 @@ const Pet = new Schema({
     }
 });
 
-Pet.methods.sell = function() {
+petSchema.methods.sell = function() {
     this.in_stock = false;
 }
 
-const petModel = mongoose.model('Pet', Pet);
+const Pet = mongoose.model('Pet', petSchema);
 
 //initializes collection with 5 predetermined documents
-configure.initializeCollection(petModel);
+// conf.clear(Pet);
+conf.initialize(Pet);
 
-module.exports = petModel;
+module.exports = Pet;

@@ -34,9 +34,9 @@
                         [(ngModel)]="model.price" name="price">
                 </div>
                 <div class="form-group">
-                    <label for="imageInput">Image</label>
-                    <input type="url" class="form-control" id="imageInput" placeholder="Image URL"
-                        [(ngModel)]="model.image" name="image">
+                    <label for="imageInput">Image URL</label>
+                    <input type="url" class="form-control" id="imageInput"
+                        placeholder="Needed to show up on 'Pets' page" [(ngModel)]="model.image" name="image">
                 </div>
                 <div class="form-group">
                     <label for="descriptionInput">Description</label>
@@ -46,7 +46,7 @@
                 <p></p>
                 <button type="submit" class="btn btn-primary" [disabled]="!petForm.form.valid">Submit</button>
                 <small id="formHelpBlock" class="form-text text-muted" [hidden]="petForm.form.valid">
-                    Fill in all the required fields to enable submission
+                    Fill all required fields to allow submission
                 </small>
             </fieldset>
         </form>
