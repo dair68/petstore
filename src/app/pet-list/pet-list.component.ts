@@ -13,7 +13,10 @@ export class PetListComponent implements OnInit {
 
   getPets(): void {
     this.petService.getPets()
-      .subscribe(pets => this.pets = pets);
+      .subscribe(pets => {
+        this.petService.pets = pets;
+        this.pets = this.petService.pets;
+      });
   }
 
   constructor(private petService: PetService) { }

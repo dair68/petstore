@@ -10,14 +10,14 @@ import { PetService } from '../pet.service';
 export class PetCarouselComponent implements OnInit {
   displayedPets: Pet[]
 
-  displayPets(numPets): void {
-    this.petService.getPets(numPets)
-    .subscribe(pets => this.displayedPets = pets);
+  displayPets(): void {
+    this.petService.getPets()
+    .subscribe(pets => this.displayedPets = pets.slice(0, 5));
   }
 
   constructor(private petService: PetService) { }
 
   ngOnInit() {
-    this.displayPets(5);
+    this.displayPets();
   }
 }

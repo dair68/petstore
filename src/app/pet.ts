@@ -1,12 +1,21 @@
 export class Pet {
+    _id: string;
+    name: string;
+    species: string;
+    sex: string;
+    details: string;
+    in_stock: boolean;
+    image: string;
+    price: number;
+
     constructor(
-        public id: string = '',
-        public name: string = '',
-        public species: string = '',
-        public sex: string = '',
-        public details?: string,
-        public in_stock?: boolean,
-        public image?: string,
-        public price?: number
-    ) {}
+    ) {
+        this.name = '';
+        this.species = '';
+        this.sex = '';
+        this.details = '';
+        this.in_stock = true;
+        this.image = '';
+        this.price = 0;
+    }
 }

@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'pets', component: PetDisplayComponent },
   { path: 'petlist', component: PetListComponent },
-  { path: 'details/:id', component: PetDetailsComponent },
+  { path: 'pet/:id', component: PetDetailsComponent },
   { path: 'petform', component: PetFormComponent }
 ];
 

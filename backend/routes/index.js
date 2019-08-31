@@ -6,28 +6,36 @@ const router = express.Router();
 
 router.get('/', (req, res) => res.send('Welcome to the Petting Zoo!'));
 
-router.get('/api/pets/:numPets', function (req, res) {
-    const numPets = +(req.params.numPets);
-    
-    petModel.find({}, null, {limit: numPets}, function (err, docs) {
+router.get('/api/pets', function (req, res) {
+
+    petModel.find({}, function (err, pets) {
         if (err) {
             handleError(res, err.message, 'could not obtain pets');
         }
 
-        res.send(docs);
+        res.send(pets);
     });
 });
 
-router.get('/api/pet-details/:id', function (req, res) {
-    const id = req.params.id;
+router.get('/api/pet/:id', function (req, res) {
     
-    petModel.findById(id, function (err, pet) {
+    petModel.findById(req.params.id, function (err, pet) {
         if (err) {
             handleError(res, err.message, 'could not find pet-details');
         }
 
         res.send(pet);
     });
+});
+
+router.post('/api/pet', function (req, res) {
+    petModel.create(req.body, function (err, pet) {
+        if (err) {
+            handleError(res, err.message, 'could not add pet');
+        }
+
+        res.send(pet);
+    })
 });
 
 module.exports = router;
