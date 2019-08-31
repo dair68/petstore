@@ -8,8 +8,10 @@ import { PetService } from '../pet.service';
   styleUrls: ['./pet-carousel.component.css']
 })
 export class PetCarouselComponent implements OnInit {
+  
   displayedPets: Pet[]
 
+  //obtains 5 pets from server and displays them in carousel
   displayPets(): void {
     this.petService.getPets()
     .subscribe(pets => this.displayedPets = pets.slice(0, 5));

@@ -29,8 +29,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="priceInput">Price</label>
-                    <input type="number" class="form-control" id="priceInput" placeholder="Price"
+                    <label for="priceInput">Price (US dollars)</label>
+                    <input type="number" class="form-control" id="priceInput" min="0" step=".01"
                         [(ngModel)]="model.price" name="price">
                 </div>
                 <div class="form-group">
@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <label for="descriptionInput">Description</label>
                     <textarea class="form-control" id="descriptionInput" placeholder="Description here" rows="3"
-                        [(ngModel)]="model.description" name="description"></textarea>
+                        [(ngModel)]="model.details" name="description"></textarea>
                 </div>
                 <p></p>
                 <button type="submit" class="btn btn-primary" [disabled]="!petForm.form.valid">Submit</button>
@@ -51,16 +51,15 @@
             </fieldset>
         </form>
     </div>
-    <div class="container success-container alert alert-success mt-3" [hidden]="!submitted">
+    <div class="container success-container alert alert-success mt-3" [hidden]="!model._id">
         <h4 class="alert-heading">Success!</h4>
         <h5>You submitted the following</h5>
-        <p class="mb-0">Id: {{model._id}}</p>
         <p class="mb-0">Name: {{model.name}}</p>
         <p class="mb-0">Species: {{model.species}}</p>
         <p class="mb-0">Sex: {{model.sex}}</p>
-        <p class="mb-0">Price: {{model.price}}</p>
+        <p class="mb-0">Price: ${{model.price.toFixed(2)}}</p>
         <p class="mb-0">Image: {{model.image}}</p>
-        <p class="mb-0">Description: {{model.description}}</p>
+        <p class="mb-0">Description: {{model.details}}</p>
         <a routerLink="/pet/{{model._id}}">
             <button class="btn btn-dark">View Pet</button>
         </a>

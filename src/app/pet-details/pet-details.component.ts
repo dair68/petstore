@@ -15,6 +15,7 @@ export class PetDetailsComponent implements OnInit {
 
   @Input() pet: Pet;
 
+  //obtains details for a certain pet based on id in url
   getPet(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.petService.getPet(id)
@@ -25,6 +26,7 @@ export class PetDetailsComponent implements OnInit {
     this.pet.in_stock = false;
   }
   
+  //returns user to previously visited page
   back(): void {
     this.location.back();
   }

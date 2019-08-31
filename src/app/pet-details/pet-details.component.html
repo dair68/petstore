@@ -9,8 +9,6 @@
             <p>{{pet.details}}</p>
             <p>Price: ${{pet.price}}</p>
             <p>Status: {{pet.in_stock ? "In stock" : "Sold!"}}</p>
-            <!-- <button type="button" class="btn btn-primary" *ngIf="pet.in_stock" (click)="sellPet()">Sell</button> -->
-            <!-- <button type="button" class="btn btn-dark" (click)="deletePet(pet.id)">Remove Pet Data</button> -->
             <button class="btn btn-secondary" (click)="back()">Back</button>
         </div>
     </div>

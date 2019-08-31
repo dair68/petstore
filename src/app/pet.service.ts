@@ -10,8 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 
 export class PetService {
-  pets: Pet[]
-
+  //requests an array of pets from pet API
   getPets(): Observable<Pet[]> {
     return this.http.get<Pet[]>(this.petsUrl + '/pets').
       pipe(
@@ -20,6 +19,7 @@ export class PetService {
       );
   }
 
+  //requests single pet from pet API using pet id
   getPet(id: string): Observable<Pet> {
     return this.http.get<Pet>(this.petsUrl + '/pet/' + id).
       pipe(
@@ -61,6 +61,7 @@ export class PetService {
 
   private petsUrl = '/api';  // URL to web api
 
+  //needed to ensure data sent in req.body correctly
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

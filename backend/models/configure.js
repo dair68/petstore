@@ -1,18 +1,18 @@
 const startingPets = require('./startingPets');
 
-//initializes starting documents in collection
-const initializeCollection = function(model) {
-    model.deleteMany({}, function(err) {
-        if(err) {
+//creates the starting documents in collection
+const initializeCollection = function (model) {
+    //deleting existing documents
+    model.deleteMany({}, function (err) {
+        if (err) {
             console.log(err);
         }
-
-        model.insertMany(startingPets, function(err, docs) {
-            if(err) {
+        //inserting premade documents
+        model.insertMany(startingPets, function (err, pets) {
+            if (err) {
                 console.log(err);
             }
-
-            console.log("Collection initialized with the following docs: " + docs);
+            console.log("Collection initialized with the following docs: " + pets);
         });
     });
 }

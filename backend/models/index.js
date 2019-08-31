@@ -33,7 +33,7 @@ Pet.methods.sell = function() {
 
 const petModel = mongoose.model('Pet', Pet);
 
-//configures initial documents
+//initializes collection with 5 predetermined documents
 configure.initializeCollection(petModel);
 
 module.exports = petModel;

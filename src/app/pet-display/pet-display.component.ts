@@ -11,12 +11,10 @@ export class PetDisplayComponent implements OnInit {
 
   pets: Pet[]
 
+  //obtaining pet array from server
   getPets(): void {
     this.petService.getPets()
-    .subscribe(pets => {
-      this.petService.pets = pets;
-      this.pets = this.petService.pets;
-    });
+    .subscribe(pets => this.pets = pets);
   }
 
   constructor(private petService: PetService) { }

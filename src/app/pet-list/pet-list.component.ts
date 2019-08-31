@@ -7,16 +7,15 @@ import { Pet } from '../pet';
   templateUrl: './pet-list.component.html',
   styleUrls: ['./pet-list.component.css']
 })
+
 export class PetListComponent implements OnInit {
-  
+
   pets: Pet[];
 
+  //obtains array of pets from pet service
   getPets(): void {
     this.petService.getPets()
-      .subscribe(pets => {
-        this.petService.pets = pets;
-        this.pets = this.petService.pets;
-      });
+      .subscribe(pets => this.pets = pets);
   }
 
   constructor(private petService: PetService) { }

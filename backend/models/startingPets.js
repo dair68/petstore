@@ -1,3 +1,4 @@
+//starting documents in the collection
 module.exports = [
     {
         name: "Drew",
