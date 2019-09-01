@@ -12,16 +12,16 @@ export class PetListComponent implements OnInit {
 
   pets: Pet[];
 
-  //obtains array of pets from pet service
-  getPets(): void {
-    this.petService.getPets()
-      .subscribe(pets => this.pets = pets);
-  }
-
   constructor(private petService: PetService) { }
 
   ngOnInit() {
     this.getPets();
+  }
+
+  //obtains array of pets from pet service
+  getPets(): void {
+    this.petService.getPets()
+      .subscribe(pets => this.pets = pets);
   }
 }
 

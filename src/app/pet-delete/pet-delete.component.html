@@ -1,0 +1,14 @@
+<div>
+    <section class="bg-dark container pb-3">
+        <h1 class="text-light">Remove Pet</h1>
+        <p class="text-light">Remove pets from the listing that no longer interest you.
+            Once a pet has been deleted it cannot be undone!
+        </p>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let pet of pets">
+                <label>{{pet.name}} the {{pet.species}}</label>
+                <button class="btn btn-danger float-right" (click)="deletePet(pet)">Delete</button>
+            </li>
+        </ul>
+    </section>
+</div>

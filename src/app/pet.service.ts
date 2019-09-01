@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵsetCurrentInjector } from '@angular/core';
 import { Pet } from "./pet"
 
 import { Observable, of } from 'rxjs';
@@ -10,9 +10,22 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 
 export class PetService {
+
+  private petsUrl = '/api';  // URL to web api
+
+  //needed to ensure data sent in req.body correctly
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  constructor(private http: HttpClient) { }
+
   //requests an array of pets from pet API
   getPets(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(this.petsUrl + '/pets')
+    const url = this.petsUrl + '/pets';
+
+    //making call to API
+    return this.http.get<Pet[]>(url)
       .pipe(
         tap(_ => console.log('fetched pets')),
         catchError(this.handleError<Pet[]>('getPets', []))
@@ -21,7 +34,10 @@ export class PetService {
 
   //requests pet images from pet API
   getImages(num = 0): Observable<[]> {
-    return this.http.get<[]>(this.petsUrl + '/pets/images/' + num)
+    const url = this.petsUrl + '/pets/images/' + num;
+
+    //making call to API
+    return this.http.get<[]>(url)
       .pipe(
         tap(_ => console.log('fetched images')),
         catchError(this.handleError<[]>('getImages', []))
@@ -30,7 +46,10 @@ export class PetService {
 
   //requests single pet from pet API using pet id
   getPet(id: string): Observable<Pet> {
-    return this.http.get<Pet>(this.petsUrl + '/pet/' + id)
+    const url = this.petsUrl + '/pet/' + id;
+
+    //making call to API
+    return this.http.get<Pet>(url)
       .pipe(
         tap(_ => console.log(`fetched pet ${id}`)),
         catchError(this.handleError<Pet>('getPet'))
@@ -41,6 +60,7 @@ export class PetService {
   purchasePet(pet: Pet): Observable<Pet> {
     const url = this.petsUrl + '/pet/sell/' + pet._id;
 
+    //making call to API
     return this.http.put<Pet>(url, pet, this.httpOptions)
       .pipe(
         tap(_ => console.log('purchased pet ' + pet._id)),
@@ -52,6 +72,7 @@ export class PetService {
   editPet(pet: Pet): Observable<Pet> {
     const url = this.petsUrl + '/pet/' + pet._id;
 
+    //making call to API
     return this.http.put<Pet>(url, pet, this.httpOptions)
       .pipe(
         tap(_ => console.log('editted pet ' + pet._id)),
@@ -63,6 +84,7 @@ export class PetService {
   addPet(pet: Pet): Observable<Pet> {
     const url = this.petsUrl + '/pet';
 
+    //making call to API
     return this.http.post<Pet>(url, pet, this.httpOptions)
       .pipe(
         tap(pet => console.log('added pet ' + pet._id)),
@@ -70,10 +92,17 @@ export class PetService {
       );
   }
 
-  // removePet(id): void {
-  //   let petIndex = pets.findIndex(pet => pet.id == id);
-  //   pets.splice(petIndex, 1);
-  // }
+  //api call to delete pet from database
+  deletePet(pet: Pet): Observable<Pet> {
+    const url = this.petsUrl + '/pet/' + pet._id;
+
+    //making call to API
+    return this.http.delete<Pet>(url, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('deleted pet ' + pet._id)),
+        catchError(this.handleError<Pet>('deletePet'))
+      );
+  }
 
   /**
  * Handle Http operation that failed.
@@ -91,13 +120,4 @@ export class PetService {
       return of(result as T);
     };
   }
-
-  private petsUrl = '/api';  // URL to web api
-
-  //needed to ensure data sent in req.body correctly
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
-  constructor(private http: HttpClient) { }
 }

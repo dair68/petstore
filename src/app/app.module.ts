@@ -14,6 +14,7 @@ import { PetCarouselComponent } from './pet-carousel/pet-carousel.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 import { PetFormComponent } from './pet-form/pet-form.component';
 import { PetEditComponent } from './pet-edit/pet-edit.component';
+import { PetDeleteComponent } from './pet-delete/pet-delete.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PetEditComponent } from './pet-edit/pet-edit.component';
     PetCarouselComponent,
     PetListComponent,
     PetFormComponent,
-    PetEditComponent
+    PetEditComponent,
+    PetDeleteComponent
   ],
   imports: [
     BrowserModule,

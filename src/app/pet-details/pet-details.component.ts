@@ -16,26 +16,6 @@ export class PetDetailsComponent implements OnInit {
   @Input() pet: Pet;
   petPurchased = false;
 
-  //obtains details for a certain pet based on id in url
-  getPet(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.petService.getPet(id)
-    .subscribe(pet => this.pet = pet);
-  }
-
-  buyPet() {
-    this.petService.purchasePet(this.pet)
-    .subscribe(pet => {
-      this.pet = pet;
-      this.petPurchased = true;
-    });
-  }
-  
-  //returns user to previously visited page
-  back(): void {
-    this.location.back();
-  }
-
   constructor(
     private route: ActivatedRoute,
     private petService: PetService,
@@ -46,4 +26,23 @@ export class PetDetailsComponent implements OnInit {
     this.getPet();
   }
 
+  //obtains details for a certain pet based on id in url
+  getPet(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.petService.getPet(id)
+      .subscribe(pet => this.pet = pet);
+  }
+
+  buyPet() {
+    this.petService.purchasePet(this.pet)
+      .subscribe(pet => {
+        this.pet = pet;
+        this.petPurchased = true;
+      });
+  }
+
+  //returns user to previously visited page
+  back(): void {
+    this.location.back();
+  }
 }

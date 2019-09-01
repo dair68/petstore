@@ -14,6 +14,12 @@ export class PetFormComponent implements OnInit {
   model = new Pet();
   submitted = false;
 
+  constructor(private petService: PetService) { }
+
+  ngOnInit() {
+
+  }
+
   //form submit handler. sends pet to server
   onSubmit() {
     //standardizing inputs
@@ -28,10 +34,4 @@ export class PetFormComponent implements OnInit {
 
     this.submitted = true;
   }
-
-  constructor(private petService: PetService) { }
-
-  ngOnInit() {
-  }
-
 }

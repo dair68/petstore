@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 import { PetFormComponent } from './pet-form/pet-form.component';
 import { PetEditComponent } from './pet-edit/pet-edit.component';
+import { PetDeleteComponent } from './pet-delete/pet-delete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'pet-list', component: PetListComponent },
   { path: 'pet/:id', component: PetDetailsComponent },
   { path: 'pet-edit/:id', component: PetEditComponent },
-  { path: 'pet-form', component: PetFormComponent }
+  { path: 'pet-form', component: PetFormComponent },
+  { path: 'pets/remove', component: PetDeleteComponent }
 ];
 
 @NgModule({

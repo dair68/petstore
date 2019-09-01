@@ -15,6 +15,16 @@ export class PetEditComponent implements OnInit {
   pet: Pet;
   petEditted = false;
 
+  constructor(
+    private route: ActivatedRoute,
+    private petService: PetService,
+    private location: Location
+  ) { }
+
+  ngOnInit() {
+    this.getPet();
+  }
+
   //obtains pet to edit
   getPet() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -35,15 +45,4 @@ export class PetEditComponent implements OnInit {
         this.petEditted = true;
       });
   }
-
-  constructor(
-    private route: ActivatedRoute,
-    private petService: PetService,
-    private location: Location
-  ) { }
-
-  ngOnInit() {
-    this.getPet();
-  }
-
 }
