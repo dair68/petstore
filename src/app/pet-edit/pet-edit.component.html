@@ -1,0 +1,61 @@
+<div>
+    <div class="card mx-auto mt-2" *ngIf="pet" [hidden]="petEditted">
+        <h5 class="card-header card-title bg-dark text-light">
+            <div class="form-group form-inline">
+                <label for="nameInput">Name: </label>
+                <input type="text" id="nameInput" class="form-control-sm" [(ngModel)]="pet.name" placeholder="name"
+                    #name="ngModel" required>
+            </div>
+        </h5>
+        <img class="pet-image" src={{pet.image}} alt={{pet.species}} />
+        <div class="form-group form-inline">
+            <label for="imageInput">Image URL: </label>
+            <input type="url" id="imageInput" class="form-control-sm" [(ngModel)]="pet.image" placeholder="image">
+        </div>
+        <div class="card-body pt-1">
+            <div class="form-group form-inline">
+                <label for="speciesInput">Species: </label>
+                <input type="text" id="speciesInput" class="form-control-sm" [(ngModel)]="pet.species"
+                    placeholder="species" #species="ngModel" required>
+            </div>
+            <div class="form-group form-inline">
+                <label for="sexInput">Sex: </label>
+                <select id="sexInput" class="form-control-sm" [(ngModel)]="pet.sex" #sex="ngModel" required>
+                    <option>male</option>
+                    <option>female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="descriptionInput">Description: </label>
+                <textarea id="descriptionInput" class="form-control" [(ngModel)]="pet.details"
+                    placeholder="description here" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="priceInput">Price(USD): </label>
+                <input type="number" id="priceInput" class="form-control-sm" min="0" [(ngModel)]="pet.price"
+                    placeholder="price">
+            </div>
+            <div class="form-group form-inline">
+                <label for="stockInput">In stock: </label>
+                <select id="stockInput" class="form-control-sm" [(ngModel)]="pet.in_stock">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-dark" (click)="onSubmit()"
+                [disabled]="!name.valid || !species.valid || !sex.valid">Done</button>
+            <button class="btn btn-secondary mx-1" (click)="back()">Cancel</button>
+            <small class="form-text text-muted" [hidden]="name.valid && species.valid && sex.valid">
+                Fill in all required fields to allow submission
+            </small>
+        </div>
+    </div>
+    <div class="container success-container alert alert-success mt-3" [hidden]="!petEditted">
+        <h4 class="alert-heading">Success!</h4>
+        <h5>Pet successfully editted</h5>
+        <a routerLink="/pet/{{pet._id}}">
+            <button class="btn btn-dark">View Pet</button>
+        </a>
+        <button class="btn btn-secondary mx-1" (click)="back()">Back</button>
+    </div>
+</div>

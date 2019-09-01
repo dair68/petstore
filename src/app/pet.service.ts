@@ -12,26 +12,26 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class PetService {
   //requests an array of pets from pet API
   getPets(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(this.petsUrl + '/pets').
-      pipe(
+    return this.http.get<Pet[]>(this.petsUrl + '/pets')
+      .pipe(
         tap(_ => console.log('fetched pets')),
         catchError(this.handleError<Pet[]>('getPets', []))
       );
   }
 
   //requests pet images from pet API
-  getImages(num=0): Observable<[]> {
-    return this.http.get<[]>(this.petsUrl + '/pets/images/' + num).
-    pipe(
-      tap(_ => console.log('fetched images')),
-      catchError(this.handleError<[]>('getImages', []))
-    );
+  getImages(num = 0): Observable<[]> {
+    return this.http.get<[]>(this.petsUrl + '/pets/images/' + num)
+      .pipe(
+        tap(_ => console.log('fetched images')),
+        catchError(this.handleError<[]>('getImages', []))
+      );
   }
 
   //requests single pet from pet API using pet id
   getPet(id: string): Observable<Pet> {
-    return this.http.get<Pet>(this.petsUrl + '/pet/' + id).
-      pipe(
+    return this.http.get<Pet>(this.petsUrl + '/pet/' + id)
+      .pipe(
         tap(_ => console.log(`fetched pet ${id}`)),
         catchError(this.handleError<Pet>('getPet'))
       );
@@ -39,20 +39,35 @@ export class PetService {
 
   //purchases pet from pet API
   purchasePet(pet: Pet): Observable<Pet> {
-    return this.http.put<Pet>(this.petsUrl + '/pet/sell/' + pet._id, pet, this.httpOptions).
-    pipe(
-      tap(_ => console.log('purchased pet ' + pet._id)),
-      catchError(this.handleError<Pet>('purchasePet'))
-    )
+    const url = this.petsUrl + '/pet/sell/' + pet._id;
+
+    return this.http.put<Pet>(url, pet, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('purchased pet ' + pet._id)),
+        catchError(this.handleError<Pet>('purchasePet'))
+      );
+  }
+
+  //edits pet in API
+  editPet(pet: Pet): Observable<Pet> {
+    const url = this.petsUrl + '/pet/' + pet._id;
+
+    return this.http.put<Pet>(url, pet, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('editted pet ' + pet._id)),
+        catchError(this.handleError<Pet>('editPet'))
+      );
   }
 
   //petInfo array contains all pet parameters except id
   addPet(pet: Pet): Observable<Pet> {
-    return this.http.post<Pet>(this.petsUrl + '/pet', pet, this.httpOptions)
-    .pipe(
-      tap(pet => console.log('added pet ' + pet._id)),
-      catchError(this.handleError<Pet>('addPet'))
-    );
+    const url = this.petsUrl + '/pet';
+
+    return this.http.post<Pet>(url, pet, this.httpOptions)
+      .pipe(
+        tap(pet => console.log('added pet ' + pet._id)),
+        catchError(this.handleError<Pet>('addPet'))
+      );
   }
 
   // removePet(id): void {

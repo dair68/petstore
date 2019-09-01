@@ -61,6 +61,19 @@ router.put('/api/pet/sell/:id', function(req, res) {
     });
 });
 
+//edits pet 
+router.put('/api/pet/:id', function(req, res) {
+    const id = req.params.id;
+
+    //querying for pet by id
+    Pet.findByIdAndUpdate(id, req.body, {new: true}, function(err, pet) {
+        if(err) {
+            handleError(res, err.message, 'could not edit pet');
+        }
+        res.send(pet);
+    });
+})
+
 //adds a pet to database
 router.post('/api/pet', function (req, res) {
     //creating new document

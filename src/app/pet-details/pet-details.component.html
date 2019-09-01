@@ -10,7 +10,10 @@
             <p>Price: ${{pet.price}}</p>
             <p>Status: {{pet.in_stock ? "In stock" : "Sold!"}}</p>
             <button class="btn btn-primary" (click)="buyPet()" *ngIf="pet.in_stock">Buy</button>
-            <button class="btn btn-secondary" (click)="back()">Back</button>
+            <button class="btn btn-secondary mx-1" (click)="back()">Back</button>
+            <a routerLink="/pet-edit/{{pet._id}}">
+                <button class="btn btn-dark">Edit</button>
+            </a>
         </div>
     </div>
     <div class="container success-container alert alert-success mt-3" [hidden]="!petPurchased">

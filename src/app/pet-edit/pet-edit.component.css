@@ -1,0 +1,16 @@
+.pet-image {
+    object-fit: cover;
+    max-height: 200px;
+    max-width: 500px;
+    width: auto;
+    height: 100%;
+}
+
+
+.card {
+    max-width: 350px;
+}
+
+.success-container {
+    max-width: 800px;
+}

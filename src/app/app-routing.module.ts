@@ -5,14 +5,16 @@ import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { HomeComponent } from './home/home.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 import { PetFormComponent } from './pet-form/pet-form.component';
+import { PetEditComponent } from './pet-edit/pet-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'pets', component: PetDisplayComponent },
-  { path: 'petlist', component: PetListComponent },
+  { path: 'pet-list', component: PetListComponent },
   { path: 'pet/:id', component: PetDetailsComponent },
-  { path: 'petform', component: PetFormComponent }
+  { path: 'pet-edit/:id', component: PetEditComponent },
+  { path: 'pet-form', component: PetFormComponent }
 ];
 
 @NgModule({

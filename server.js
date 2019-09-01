@@ -8,6 +8,11 @@ const mongoURL = 'mongodb://localhost:27017/petstore';
 const router = require('./backend/routes');
 const bodyParser = require('body-parser');
 
+//mongoose settings to fix deprecation warnings
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 //connecting to database
 mongoose.connect(mongoURL, { useNewUrlParser: true }, err => console.log(err.message));
 
