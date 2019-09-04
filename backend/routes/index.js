@@ -9,8 +9,31 @@ router.get('/', (req, res) => res.send('Welcome to the Petting Zoo!'));
 
 //obtains all pets from database
 router.get('/api/pets', function (req, res) {
+    //optional search query fields from url
+    queryParams = ['name', 'species', 'sex', 'in_stock'];
+    defaultSpecies = ['dog', 'cat', 'rabbit', 'fish', 'bird'];
+
+    const filter = {};
+
+    //adding optional fields to database request
+    for (let i = 0; i < queryParams.length; i++) {
+        const param = queryParams[i];
+        
+        //checking if query option has been given in url
+        if(req.query[param]) {
+            //special case for {species: 'other'}
+            if(param === 'species' && req.query[param] === 'other') {
+                filter.species = {$nin: defaultSpecies};
+            }
+            //adds this query info to database filter
+            else {
+                filter[param] = req.query[param];
+            }
+        }
+    }
+
     //querying for all pets from collection 
-    Pet.find({}, function (err, pets) {
+    Pet.find(filter, function (err, pets) {
         if (err) {
             handleError(res, err.message, 'could not obtain pets');
         }
@@ -49,12 +72,12 @@ router.get('/api/pet/:id', function (req, res) {
 });
 
 //updates pet to not in stock
-router.put('/api/pet/sell/:id', function(req, res) {
+router.put('/api/pet/sell/:id', function (req, res) {
     const id = req.params.id;
 
     //querying for pet by id
-    Pet.findByIdAndUpdate(id, {in_stock: false}, {new: true}, function(err, pet) {
-        if(err) {
+    Pet.findByIdAndUpdate(id, { in_stock: false }, { new: true }, function (err, pet) {
+        if (err) {
             handleError(res, err.message, 'could not sell pet');
         }
         res.send(pet);
@@ -62,13 +85,13 @@ router.put('/api/pet/sell/:id', function(req, res) {
 });
 
 //edits pet 
-router.put('/api/pet/:id', function(req, res) {
+router.put('/api/pet/:id', function (req, res) {
     const id = req.params.id;
     const pet = req.body;
 
     //querying for pet by id
-    Pet.findByIdAndUpdate(id, pet, {new: true}, function(err, edittedPet) {
-        if(err) {
+    Pet.findByIdAndUpdate(id, pet, { new: true }, function (err, edittedPet) {
+        if (err) {
             handleError(res, err.message, 'could not edit pet');
         }
         res.send(edittedPet);
@@ -89,12 +112,12 @@ router.post('/api/pet', function (req, res) {
 });
 
 //deletes pet from database
-router.delete('/api/pet/:id', function(req, res) {
+router.delete('/api/pet/:id', function (req, res) {
     const id = req.params.id;
 
     //deleting document
-    Pet.deleteOne({_id: id}, function(err) {
-        if(err) {
+    Pet.deleteOne({ _id: id }, function (err) {
+        if (err) {
             handleError(res, err.message, 'could not delete pet');
         }
         res.send('deleted pet ' + id);

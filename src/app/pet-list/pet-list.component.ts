@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PetService } from "../pet.service";
 import { Pet } from '../pet';
 
@@ -10,18 +10,11 @@ import { Pet } from '../pet';
 
 export class PetListComponent implements OnInit {
 
-  pets: Pet[];
+  @Input() petlist: Pet[];
 
-  constructor(private petService: PetService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getPets();
-  }
-
-  //obtains array of pets from pet service
-  getPets(): void {
-    this.petService.getPets()
-      .subscribe(pets => this.pets = pets);
   }
 }
 

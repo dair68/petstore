@@ -35,6 +35,6 @@ const Pet = mongoose.model('Pet', petSchema);
 
 //initializes collection with 5 predetermined documents
 // conf.clear(Pet);
-conf.initialize(Pet);
+// conf.initialize(Pet);
 
 module.exports = Pet;

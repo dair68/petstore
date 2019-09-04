@@ -32,6 +32,37 @@ export class PetService {
       );
   }
 
+  //obtains pet(s) that match parameters in seach object 
+  searchPets(search = {}): Observable<Pet[]> {
+    let url = this.petsUrl + '/pets';
+
+    //url contains query
+    if (search !== {}) {
+      //optional search fields
+      const queryOptions = ['name', 'species', 'sex', 'in_stock'];
+      url += '/?';
+
+      //adding queryOptions to search url
+      for (let i = 0; i < queryOptions.length; i++) {
+        const option = queryOptions[i];
+
+        //checking if option included in query
+        if (search[option]) {
+          //adding option to url
+          const urlOption = option + '=' + search[option];
+          url += urlOption;
+        }
+      }
+    }
+
+    //making call to API
+    return this.http.get<Pet[]>(url)
+      .pipe(
+        tap(_ => console.log('fetched pets for search object ' + search)),
+        catchError(this.handleError<Pet[]>('searchPets', []))
+      );
+  }
+
   //requests pet images from pet API
   getImages(num = 0): Observable<[]> {
     const url = this.petsUrl + '/pets/images/' + num;
