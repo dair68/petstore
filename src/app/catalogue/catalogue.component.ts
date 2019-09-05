@@ -26,7 +26,7 @@ export class CatalogueComponent implements OnInit {
     name: '',
     species: '',
     sex: '',
-    in_stock: null
+    in_stock: ''
   }
 
   constructor(private petService: PetService) { }

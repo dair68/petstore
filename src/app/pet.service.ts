@@ -40,6 +40,7 @@ export class PetService {
     if (search !== {}) {
       //optional search fields
       const queryOptions = ['name', 'species', 'sex', 'in_stock'];
+      let urlParams = [];
       url += '/?';
 
       //adding queryOptions to search url
@@ -49,10 +50,11 @@ export class PetService {
         //checking if option included in query
         if (search[option]) {
           //adding option to url
-          const urlOption = option + '=' + search[option];
-          url += urlOption;
+          urlParams.push(option + '=' + search[option]);
         }
       }
+
+      url += urlParams.join('&');
     }
 
     //making call to API

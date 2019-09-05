@@ -13,23 +13,29 @@ router.get('/api/pets', function (req, res) {
     queryParams = ['name', 'species', 'sex', 'in_stock'];
     defaultSpecies = ['dog', 'cat', 'rabbit', 'fish', 'bird'];
 
-    const filter = {};
+    let parsedQueries = [];
+    let filter = {};
 
     //adding optional fields to database request
     for (let i = 0; i < queryParams.length; i++) {
         const param = queryParams[i];
-        
+
         //checking if query option has been given in url
-        if(req.query[param]) {
+        if (req.query[param]) {
             //special case for {species: 'other'}
-            if(param === 'species' && req.query[param] === 'other') {
-                filter.species = {$nin: defaultSpecies};
+            if (param === 'species' && req.query[param] === 'other') {
+                parsedQueries.push({ [param]: { $nin: defaultSpecies } });
             }
             //adds this query info to database filter
             else {
-                filter[param] = req.query[param];
+                parsedQueries.push({ [param]: req.query[param] })
             }
         }
+    }
+
+    //placing queries into filter
+    if (parsedQueries && parsedQueries.length) {
+       filter = {$and: parsedQueries};
     }
 
     //querying for all pets from collection 
