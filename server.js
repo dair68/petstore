@@ -1,12 +1,16 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const mongoose = require('mongoose');
-const mongoURL = 'mongodb://localhost:27017/petstore';
+const mongoURL = process.env.MONGODB_URI || 'mongodb://localhost:27017/petstore';
 
 const router = require('./backend/routes');
 const bodyParser = require('body-parser');
+
+// Create link to Angular build directory
+const distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 //mongoose settings to fix deprecation warnings
 mongoose.set('useNewUrlParser', true);
