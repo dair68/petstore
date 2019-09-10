@@ -32,9 +32,9 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
     CatalogueComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     HttpClientModule
   ],
   providers: [],
