@@ -4,23 +4,25 @@ module.exports = (oplog) => {
     oplog.tail().then(() => console.log('tailing started'))
         .catch(err => console.error(err));
 
+    //logs the oplog document for each of the operations below    
     oplog.on('op', data => console.log(data));
 
-    //insert oplog
+    //insert operation
     oplog.on('insert', doc => console.log(doc));
 
-    //update oplog
+    //update operation
     oplog.on('update', doc => console.log(doc));
 
-    //delete oplog
+    //delete operation
     oplog.on('delete', doc => console.log(doc.o._id));
 
-    //error oplog
+    //error occured
     oplog.on('error', error => console.log(error));
 
-    //terminating oplog
+    //cursor stream ended
     oplog.on('end', () => console.log('Stream ended'));
 
-    //server stop oplog
-    oplog.stop(() => console.log('server stopped'));
+    //stop tailing and disconnect from server
+    oplog.stop().then(() => console.log('tailing stopped'))
+        .catch(err => console.error(err));
 }
