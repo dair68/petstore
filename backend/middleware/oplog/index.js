@@ -8,13 +8,13 @@ module.exports = (oplog) => {
     oplog.on('op', data => console.log(data));
 
     //insert operation
-    oplog.on('insert', doc => console.log(doc));
+    oplog.on('insert', doc => console.log('inserted doc ' + doc.o._id));
 
     //update operation
-    oplog.on('update', doc => console.log(doc));
+    oplog.on('update', doc => console.log('updated doc ' + doc.o2._id));
 
     //delete operation
-    oplog.on('delete', doc => console.log(doc.o._id));
+    oplog.on('delete', doc => console.log('deleted doc ' + doc.o._id));
 
     //error occured
     oplog.on('error', error => console.log(error));
