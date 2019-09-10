@@ -41,7 +41,6 @@ export class PetService {
       //optional search fields
       const queryOptions = ['name', 'species', 'sex', 'in_stock'];
       let urlParams = [];
-      url += '/?';
 
       //adding queryOptions to search url
       for (let i = 0; i < queryOptions.length; i++) {
@@ -54,13 +53,13 @@ export class PetService {
         }
       }
 
-      url += urlParams.join('&');
+      url += '/?' + urlParams.join('&');
     }
 
     //making call to API
     return this.http.get<Pet[]>(url)
       .pipe(
-        tap(_ => console.log('fetched pets for search object ' + search)),
+        tap(_ => console.log('fetched pets for search object ' + JSON.stringify(search))),
         catchError(this.handleError<Pet[]>('searchPets', []))
       );
   }
@@ -84,7 +83,7 @@ export class PetService {
     //making call to API
     return this.http.get<Pet>(url)
       .pipe(
-        tap(_ => console.log(`fetched pet ${id}`)),
+        tap(_ => console.log('fetched pet ' + id)),
         catchError(this.handleError<Pet>('getPet'))
       );
   }
@@ -148,6 +147,9 @@ export class PetService {
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

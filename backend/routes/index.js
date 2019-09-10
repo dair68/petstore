@@ -122,11 +122,11 @@ router.delete('/api/pet/:id', function (req, res) {
     const id = req.params.id;
 
     //deleting document
-    Pet.deleteOne({ _id: id }, function (err) {
+    Pet.findByIdAndRemove(id, function (err, removedPet) {
         if (err) {
             handleError(res, err.message, 'could not delete pet');
         }
-        res.send('deleted pet ' + id);
+        res.send(removedPet);
     });
 });
 

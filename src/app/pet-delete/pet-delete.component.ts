@@ -23,8 +23,7 @@ export class PetDeleteComponent implements OnInit {
   }
 
   deletePet(pet: Pet) {
-    this.pets = this.pets.filter(p => p !== pet)
-    this.petService.deletePet(pet)
-      .subscribe();
+    this.pets = this.pets.filter(p => p !== pet);
+    this.petService.deletePet(pet).subscribe();
   }
 }

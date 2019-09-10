@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pet } from 'src/app/pet';
 
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +13,7 @@ import { PetService } from 'src/app/pet.service';
 })
 export class PetDetailsComponent implements OnInit {
 
-  @Input() pet: Pet;
+  pet: Pet;
   petPurchased = false;
 
   constructor(
