@@ -19,9 +19,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 const configApp = require('./backend/middleware/express')(app);
 
-// Creating link to Angular build directory
-const distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
+ const distDir = __dirname + '/dist/';
+ app.use(express.static(distDir));
 
 //connecting app to server
 app.listen(port, () => console.log(`app listening on port ${port}`));
