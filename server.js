@@ -17,10 +17,8 @@ mongoose.connection.on('error', err => console.log(err));
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
-const configApp = require('./backend/middleware/express')(app);
-
- const distDir = __dirname + '/dist/';
- app.use(express.static(distDir));
+const distDir = __dirname + '/dist/';
+const configApp = require('./backend/middleware/express')(app, distDir);
 
 //connecting app to server
 app.listen(port, () => console.log(`app listening on port ${port}`));
