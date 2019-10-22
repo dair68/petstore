@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const conf = require('./configure');
+const Person = require('./person');
 
 const Schema = mongoose.Schema;
 
@@ -24,7 +25,15 @@ const petSchema = new Schema({
     price: {
         type: Number,
         min: 0
-    }
+    },
+    owner: Person,
+    transactions: [
+        {
+            buyer: Person,
+            seller: Person,
+            date: Date
+        }
+    ]
 });
 
 petSchema.methods.sell = function() {
