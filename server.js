@@ -1,8 +1,8 @@
 //mongo oplog setup
-const MongoOplog = require('mongo-oplog');
-const oplogURL = 'mongodb://127.0.0.1:27017/local';
-const oplog = MongoOplog(oplogURL, { ns: 'petstore.pets' });
-const configOplog = require('./backend/middleware/oplog')(oplog);
+// const MongoOplog = require('mongo-oplog');
+// const oplogURL = 'mongodb://127.0.0.1:27017/local';
+// const oplog = MongoOplog(oplogURL, { ns: 'petstore.pets' });
+// const configOplog = require('./backend/middleware/oplog')(oplog);
 
 //mongoose setup
 const mongoose = require('mongoose');
